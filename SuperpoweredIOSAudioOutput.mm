@@ -334,8 +334,8 @@ static OSStatus audioProcessingCallback(void *inRefCon, AudioUnitRenderActionFla
         double sr = samplerate < preferredMinimumSamplerate ? preferredMinimumSamplerate : 0;
         double current;
         if (!iOS6) {
-            SILENCE_DEPRECATION([[AVAudioSession sharedInstance] preferredHardwareSampleRate]); // iOS 5 compatibility
-        } else [[AVAudioSession sharedInstance] preferredSampleRate];
+            SILENCE_DEPRECATION(current = [[AVAudioSession sharedInstance] preferredHardwareSampleRate]); // iOS 5 compatibility
+        } else current = [[AVAudioSession sharedInstance] preferredSampleRate];
 
         if (current != sr) {
             if (!iOS6) {
